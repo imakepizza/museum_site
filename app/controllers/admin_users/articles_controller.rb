@@ -17,7 +17,7 @@ module AdminUsers
 
     # GET /articles/1/edit
     def edit
-      @paragraph = @article.elements.build(element_type: 'paragraph')
+      @element = @article.elements.build
     end
 
     # POST /articles
@@ -25,8 +25,7 @@ module AdminUsers
       @article = current_admin_user.articles.build(article_params)
 
       if @article.save
-        redirect_to @article, notice: 'Article was successfully created.'
-      else
+        redirect_to edit_article_path(@article)
         render :new
       end
     end
@@ -34,7 +33,7 @@ module AdminUsers
     # PATCH/PUT /articles/1
     def update
       if @article.update(article_params)
-        redirect_to @article, notice: 'Article was successfully updated.'
+        redirect_to edit_article_path(@article)
       else
         render :edit
       end
@@ -54,7 +53,7 @@ module AdminUsers
 
       # Only allow a list of trusted parameters through.
       def article_params
-        params.require(:article).permit(:title, :content)
+        params.require(:article).permit(:title, :content, :header_image)
       end
   end
 end

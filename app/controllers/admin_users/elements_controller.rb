@@ -25,7 +25,7 @@ module AdminUsers
     # DELETE /elements/1
     def destroy
       @element.destroy
-      redirect_to elements_url, notice: 'Element was successfully destroyed.'
+      redirect_to edit_article_path(@element.article)
     end
 
     private
@@ -39,7 +39,7 @@ module AdminUsers
 
       # Only allow a list of trusted parameters through.
       def element_params
-        params.require(:element).permit(:element_type, :content)
+        params.require(:element).permit(:element_type, :content, :image)
       end
   end
 end

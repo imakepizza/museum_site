@@ -5,12 +5,25 @@
 </h4>
 <% @articles.each do |article| %>
 <%= link_to edit_article_path(article), class: 'text-decoration-none' do %>
-<div class="card mb-3">
+<div class="card mb-3 post-card">
   <div class="card-body">
-    <h5 class='card-title mb-1 text-dark'><%= article.title %></h5>
-    <p class='text-secondary mb-0'><%= article.content %></p>
+    <div class="row">
 
-  </div>
+      <div class="col-md-2">
+        <% if article.header_image.present? %>
+        <div class="header-img" style="background-image: url(<%= url_for(article.header_image)%>)">
+
+        </div>
+        <% end %>
+      </div>
+      <div class="col-md-10">
+
+        <h5 class='card-title mb-1 text-dark'><%= article.title %></h5>
+        <p class='text-secondary mb-0'><%= article.content %></p>
+      </div>
+
+    </div>
+    </div>
 
 </div>
 <% end %>
