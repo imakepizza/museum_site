@@ -1,0 +1,17 @@
+
+<h4 class='d-flex justify-content-between mb-4'>
+  <span>Статьи</span>
+  <%= link_to 'Новая статья', new_article_path, class: 'btn btn-primary' %>
+</h4>
+<% @articles.each do |article| %>
+<%= link_to edit_article_path(article), class: 'text-decoration-none' do %>
+<div class="card mb-3">
+  <div class="card-body">
+    <h5 class='card-title mb-1 text-dark'><%= article.title %></h5>
+    <p class='text-secondary mb-0'><%= article.content %></p>
+
+  </div>
+
+</div>
+<% end %>
+<% end %>
